@@ -2,10 +2,8 @@
 
 node('workers') {
     stage('Checkout SCM') {
-        steps {
-            git branch: 'develop'
-            credentialsId: 'github-ssh-from-jm'
-            url: 'git@github.com:oleksiihead/films-loader.git'
-        }
+        git branch: 'develop'
+        credentialsId: 'github-ssh-from-jm'
+        url: "ssh://git@github.com:oleksiihead/films-loader.git"
     }
 }
