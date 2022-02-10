@@ -1,10 +1,7 @@
 #!/usr/bin/env groovy
 
-//Add comment for test
-node('workers') {
-    stage('Checkout SCM') {
-        git branch: 'develop',
-                credentialsId: 'github-ssh-from-jm',
-                url: "ssh://git@github.com:oleksiihead/films-loader.git"
+node('workers'){
+    stage('Checkout SCM'){
+        checkout scm
     }
 }
