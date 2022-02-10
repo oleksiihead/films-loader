@@ -1,15 +1,12 @@
-//Check webhook, now we have 8 builds
-pipeline {
-    agent {
-        label 'workers'
+def imageName = 'oleksiihead/films-loader'
+
+node('workers') {
+    stage('Checkout SCM') {
+        checkout scm
     }
-    stages {
-        stage('Checkout SCM') {
-            steps {
-                git branch: 'develop',
-                        credentialsId: 'github-ssh-from-jm',
-                        url: 'git@github.com:oleksiihead/films-loader.git'
-            }
-        }
+
+    stage('Unit tests') {
+        sh 'docker build -t ${imageName}-test -f Dockerfile.test'
+        sh 'docker run --rm ${imageName}-test'
     }
 }
