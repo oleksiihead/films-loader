@@ -1,4 +1,7 @@
 pipeline {
+    agent {
+        label 'workers'
+    }
     stages {
         stage('Checkout SCM') {
             steps {
