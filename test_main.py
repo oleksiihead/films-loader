@@ -1,5 +1,6 @@
 import unittest
 import json
+import xmlrunner
 
 
 class TestJSONLoaderMethods(unittest.TestCase):
@@ -21,4 +22,5 @@ class TestJSONLoaderMethods(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    runner = xmlrunner.XMLTestRunner(output='reports')
+    unittest.main(testRunner=runner)
