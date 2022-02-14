@@ -1,5 +1,5 @@
 def imageName = 'mlabouardy/movies-loader'
-def registry = 'https://registry.slowcoder.com'
+//def registry = 'https://registry.slowcoder.com'
 
 node('workers'){
     stage('Checkout'){
@@ -9,22 +9,23 @@ node('workers'){
     stage('Unit Tests'){
         def imageTest= docker.build("${imageName}-test", "-f Dockerfile.test .")
         sh "docker run --rm -v $PWD/reports:/app/reports ${imageName}-test"
-        junit "$PWD/reports/*.xml"
+        //junit "$PWD/reports/*.xml"
+        junit "**/reports/*.xml"
     }
 
-    stage('Build'){
-        docker.build(imageName)
-    }
-
-    stage('Push'){
-        docker.withRegistry(registry, 'registry') {
-            docker.image(imageName).push(commitID())
-
-            if (env.BRANCH_NAME == 'develop') {
-                docker.image(imageName).push('develop')
-            }
-        }
-    }
+//     stage('Build'){
+//         docker.build(imageName)
+//     }
+//
+//     stage('Push'){
+//         docker.withRegistry(registry, 'registry') {
+//             docker.image(imageName).push(commitID())
+//
+//             if (env.BRANCH_NAME == 'develop') {
+//                 docker.image(imageName).push('develop')
+//             }
+//         }
+//     }
 }
 
 def commitID() {
