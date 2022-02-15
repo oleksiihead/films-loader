@@ -1,7 +1,9 @@
 FROM python:3.9.10
 LABEL maintainer="oleksiihead"
 
-WORKDIR /app 
+WORKDIR /app
+
+RUN pip install --upgrade pip
 
 COPY requirements.txt .
 
