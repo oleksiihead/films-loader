@@ -1,4 +1,4 @@
-def imageName = 'mlabouardy/movies-loader'
+def imageName = "mlabouardy/movies-loader:${BUILD_ID}"
 //def registry = 'https://registry.slowcoder.com'
 
 node('workers'){
@@ -13,10 +13,10 @@ node('workers'){
         junit "**/reports/*.xml"
     }
 
-//     stage('Build'){
-//         docker.build(imageName)
-//     }
-//
+    stage('Build'){
+        docker.build(imageName)
+    }
+
 //     stage('Push'){
 //         docker.withRegistry(registry, 'registry') {
 //             docker.image(imageName).push(commitID())

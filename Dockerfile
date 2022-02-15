@@ -1,5 +1,5 @@
-FROM python:3.7.3
-LABEL MAINTAINER mlabouardy
+FROM python:3.9.10
+LABEL MAINTAINER oleksiihead
 
 WORKDIR /app 
 
@@ -9,4 +9,4 @@ RUN pip install -r requirements.txt
 
 COPY movies.json main.py ./
 
-CMD python main.py
+CMD ["python", "main.py"]
