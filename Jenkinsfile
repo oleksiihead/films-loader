@@ -20,6 +20,10 @@ node('workers'){
     stage('Push') {
         docker.withRegistry('', 'dockerhub-oleksiihead') {
             docker.image(imageName).push(commitID())
+
+            if (env.BRANCH_NAME == 'develop') {
+                docker.image(imageName).push('develop')
+            }
         }
     }
 
