@@ -1,5 +1,5 @@
-def imageName = "oleksiihead/movies-loader:${BUILD_ID}"
-//def registry = 'https://registry.slowcoder.com'
+def imageName = "oleksiihead/films-loader"
+//def registry = 'https://registry.smiichuk.click'
 
 node('workers'){
     stage('Checkout'){
@@ -15,6 +15,12 @@ node('workers'){
 
     stage('Build'){
         docker.build(imageName)
+    }
+
+    stage('Push') {
+        docker.withRegistry('', 'dockerhub-oleksiihead') {
+            docker.image(imageName).push(env.BUILD_ID)
+        }
     }
 
 //     stage('Push'){
