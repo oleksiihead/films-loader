@@ -19,7 +19,7 @@ node('workers'){
 
     stage('Push') {
         docker.withRegistry('', 'dockerhub-oleksiihead') {
-            docker.image(imageName).push(env.BUILD_ID)
+            docker.image(imageName).push(commitID())
         }
     }
 
