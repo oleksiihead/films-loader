@@ -26,16 +26,6 @@ node('workers'){
             }
         }
     }
-
-//     stage('Push'){
-//         docker.withRegistry(registry, 'registry') {
-//             docker.image(imageName).push(commitID())
-//
-//             if (env.BRANCH_NAME == 'develop') {
-//                 docker.image(imageName).push('develop')
-//             }
-//         }
-//     }
 }
 
 def commitID() {
